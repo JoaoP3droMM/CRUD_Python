@@ -4,8 +4,8 @@ name: CI/CD - Deploy to Production
 # Gatilho: Este workflow roda a cada push na branch 'master'
 on:
   push:
-    branches: [ master ]
-    
+    branches: [ main ]
+
 # Variáveis de ambiente para simplificar
 env:
   # Usando GHCR: ghcr.io/SEU_USUARIO_GITHUB/NOME_DO_REPO
