@@ -1,4 +1,4 @@
-from SQLAlchemy import Table, Column, Integer, ForeignKey
+from sqlalchemy import Table, Column, Integer, ForeignKey
 from config import db
 
 # Cria tabela de empresas
@@ -16,3 +16,6 @@ class Empresa(db.Model):
 
     # Relacionamento com os socios
     socios = relationship('Socio', secondary=empresa_socio_association, back_populates='empresas')
+
+    def to_dict(self):
+        return {'id': self.id, 'cnpj_basico': self.cnpj_basico, 'razao_social': self.razao_social, 'natureza_juridica': self.natureza_juridica, 'capital_social': self.capital_social}

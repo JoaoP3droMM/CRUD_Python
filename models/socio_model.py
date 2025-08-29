@@ -1,5 +1,5 @@
-from SQLAlchemy import Table, Column, Integer, ForeignKey
-from SQLAlchemy.orm import relationship
+from sqlalchemy import Table, Column, Integer, ForeignKey
+from sqlalchemy.orm import relationship
 from config import db
 from .associations_model import empresa_socio_assiciation
 
@@ -14,3 +14,6 @@ class Socio(db.Model):
     
     # Relacionamento com Empresa
     empresas = relationship('Empresa', secondary=empresa_socio_association, back_populates='socios')
+
+    def to_dict(self):
+        return {'id': self.id, 'nome_socio': self.nome_socio, 'documento_socio': self.documento_socio, 'qualificacao_socio': self.qualificacao_socio}

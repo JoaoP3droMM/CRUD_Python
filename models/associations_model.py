@@ -1,4 +1,4 @@
-from SQLAlchemy import Table, Column, Integer, ForeignKey
+from sqlalchemy import Table, Column, Integer, ForeignKey
 from config import db
 
 # Cria a tabela de empresa e sócio
