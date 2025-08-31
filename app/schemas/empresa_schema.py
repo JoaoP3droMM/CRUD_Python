@@ -4,10 +4,13 @@ from .estabelecimento_schema import Estabelecimento
 from .socio_schema import Socio
 
 class EmpresaBase(BaseModel):
-    razao_social: str
-    cnpj_basico: str
-    natureza_juridica: str
-    capital_social: float
+    cnpj_basico: int
+    razao_social: str | None
+    natureza_juridica: int
+    qualificacao_responsavel: str | None
+    capital_social: float | None
+    porte: int
+    ente_federativo_responsavel: int | None
 
 class EmpresaCreate(EmpresaBase):
     pass
