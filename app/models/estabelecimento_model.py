@@ -1,11 +1,10 @@
-from SQLAlchemy import Table, Column, Integer, ForeignKey
-from SQLAlchemy.orm import relationship
-from config import db
+from sqlalchemy import Column, Integer, String, Date, ForeignKey
+from sqlalchemy.orm import relationship
+from ..database import Base
 
-# Cria tabela de estabelecimento
-class Estabelecimento(db.Model):
+class Estabelecimento(Base):
     __tablename__ = 'estabelecimentos'
-
+    
     id = Column(Integer, primary_key=True)
     cnpj_completo = Column(String(14), unique=True, nullable=False, index=True) 
     nome_fantasia = Column(String(255))
@@ -15,7 +14,8 @@ class Estabelecimento(db.Model):
     uf = Column(String(2))
     municipio = Column(String(100))
 
-    # Chave estrangeira para relacionamento
+    # Chave estrangeira que cria o link com a tabela 'empresas'
     empresa_id = Column(Integer, ForeignKey('empresas.id'), nullable=False)
-
+    
+    # Relação de volta para a Empresa
     empresa = relationship('Empresa', back_populates='estabelecimentos')
