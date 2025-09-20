@@ -7,10 +7,14 @@ class Empresa(Base):
     __tablename__ = 'empresas'
 
     id = Column(Integer, primary_key=True)
-    cnpj_basico = Column(String(8), unique=True, nullable=False, index=True)
-    razao_social = Column(String(255), nullable=False)
-    natureza_juridica = Column(String(100))
-    capital_social = Column(Float)
+
+    cnpj_basico: Column(String(), unique=True, nullable=False, index=True)
+    razao_social: Column(String(), nullable=False)
+    natureza_juridica: Column(Integer)
+    qualificacao_responsavel: Column(String(), nullable=True)
+    capital_social: Column(Float)
+    porte: Column(Integer)
+    ente_federativo_responsavel: Column(Integer)
 
     # Relacionamento 1:N com Estabelecimento
     estabelecimentos = relationship('Estabelecimento', back_populates='empresa', cascade='all, delete-orphan')

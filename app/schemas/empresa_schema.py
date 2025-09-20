@@ -1,26 +1,26 @@
-from pydantic import BaseModel
-from typing import List
-from .estabelecimento_schema import Estabelecimento
-from .socio_schema import Socio
+from pydantic import BaseModel, Field
+from typing import Optional
 
-class EmpresaBase(BaseModel):
-    cnpj_basico: int
-    razao_social: str | None
-    natureza_juridica: int
-    qualificacao_responsavel: str | None
-    capital_social: float | None
-    porte: int
-    ente_federativo_responsavel: int | None
-
-class EmpresaCreate(EmpresaBase):
-    pass
-
-# Schema de resposta, incluindo relacionamentos
-class Empresa(EmpresaBase):
-    id: int
-
-    estabelecimentos: List[Estabelecimento] = []
-    socios: List[Socio] = []
+class EmpresaResponseSchema:
+    nome_fantasia: str = Field(..., description="Nome fantasia da empresa")
+    tipo_logradouro: str = Field(..., description="Tipo do logradouro (Rua, Av, etc.)")
+    logradouro: str = Field(..., description="Nome do logradouro")
+    numero: str = Field(..., description="Número do endereço")
+    complemento: Optional[str] = Field(None, description="Complemento do endereço")
+    bairro: str = Field(..., description="Bairro")
+    uf: str = Field(..., max_length=2, description="Unidade Federativa (Estado)")
+    cep: str = Field(..., description="CEP", example="12345-678")
 
     class Config:
-        from_attributes = True
+        schema_extra = {
+            "example": {
+                "nome_fantasia": "Tech Solutions LTDA",
+                "tipo_logradouro": "Rua",
+                "logradouro": "das Palmeiras",
+                "numero": "123",
+                "complemento": "Sala 45",
+                "bairro": "Centro",
+                "uf": "SP", 
+                "cep": "01234-567"
+            }
+        }
