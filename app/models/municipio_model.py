@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship
 from ..database import Base
 from .associations import empresa_socio_association
 
-class Pais:
+class Municipio(Base):
     __tablename__ = "municipio"
 
     id: Column(Integer, primary_key=True)
