@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from ..schemas import user_schema
 from ..core.security import get_password_hash
+from ..models import user_model
 
 # Função para buscar um usuário pelo e-mail
 def get_user_by_email(db: Session, email: str):
