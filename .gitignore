@@ -1,4 +1,7 @@
 __pycache__
 banco.db
-deps
+banco.db.zst
 .venv
+*.db
+deps/
+*.db.zst
